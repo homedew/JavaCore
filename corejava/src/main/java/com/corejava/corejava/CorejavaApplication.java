@@ -15,6 +15,11 @@ public class CorejavaApplication {
 		IStreamingManager sm = new StreamingManager();
 		sm.WriteIntoFile("Now The world is gonna to my name");
 		sm.WriteIntoFile("You dont know who I am?", 13, 10);
+		sm.ReadFile("src/source/streamingfile1.txt");
+		sm.ReadFileWithWhile("src/source/streamingfile2.txt");
+		sm.ReadFileWithFileReader("src/source/streamingfile2.txt");
+		sm.CopyFile("src/source/streamingfileCopy1.txt", "src/source/streamingfileCopy2.txt");
+		sm.ReadFileWithFileReader("src/source/streamingfileCopy2.txt");
 	}
 
 }
