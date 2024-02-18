@@ -97,7 +97,6 @@ public class StreamingManager implements IStreamingManager {
                 fos.write(converToUpperCase);
             }
             fis.close();
-
             fos.close();
 
         } catch (FileNotFoundException ex) {
@@ -149,26 +148,24 @@ public class StreamingManager implements IStreamingManager {
     }
 
     @Override
-    public void WriteByteArray()
-    {
+    public void WriteByteArray() {
         try {
             ByteArrayOutputStream bos = new ByteArrayOutputStream();
             bos.write('W');
             bos.write('A');
             bos.write('U');
-    
+
             byte[] b = bos.toByteArray();
             String result = new String(b);
-    
-            for(byte x : b)
-            {
-                System.out.println((char)x);
+
+            for (byte x : b) {
+                System.out.println((char) x);
             }
-    
+
             FileOutputStream fos = new FileOutputStream("src/source/streamingfile3.txt");
             bos.writeTo(fos);
             System.out.print(result);
-    
+
             bos.close();
             fos.close();
         } catch (Exception e) {
@@ -177,22 +174,75 @@ public class StreamingManager implements IStreamingManager {
     }
     // #endregion
 
-
-    //#region
+    // #region Char Manager
     @Override
-    public void ReadCharArray(char[] data)
-    {
+    public void ReadCharArray(char[] data) {
         try {
             CharArrayReader chr = new CharArrayReader(data);
             int x;
-            while((x= chr.read()) !=-1)
-            {
-                System.out.println((char)x);
+            while ((x = chr.read()) != -1) {
+                System.out.println((char) x);
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-       
+
+    }
+    // #endregion
+
+    // #region Buffer Manager
+    @Override
+    public void BufferInputStream() {
+        try {
+            FileInputStream fis = new FileInputStream("src/source/streamingfileCopy2.txt");
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            String result = new String(bis.readAllBytes());
+
+            System.out.print(result);
+            bis.close();
+            fis.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
+    @Override
+    public void BufferWithMark() {
+        try {
+            FileInputStream fis = new FileInputStream("src/source/streamingfileCopy2.txt");
+            BufferedInputStream bis = new BufferedInputStream(fis);
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+            
+            bis.mark(3);
+            System.out.println((char)bis.read());
+
+            
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+
+            bis.reset();
+            System.out.println((char)bis.read());
+            System.out.println((char)bis.read());
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    // #endregion
 }

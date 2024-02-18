@@ -34,6 +34,11 @@ public class CorejavaApplication {
 		System.out.println("Streaming data for bytes");
 		char[] data3 = {'C','H'};
 		sm.ReadCharArray(data3);
+
+		System.out.println();
+		System.out.println("Buffer InputStream");
+		sm.BufferInputStream();
+		sm.BufferWithMark();
 	}
 
 }

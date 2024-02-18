@@ -22,4 +22,9 @@ public interface IStreamingManager {
     void ReadCharArray(char[] data);
     //#endregion
 
+    //#region Buffer Streaming
+    void BufferInputStream();
+    void BufferWithMark();
+    //#endregion
+
 }
