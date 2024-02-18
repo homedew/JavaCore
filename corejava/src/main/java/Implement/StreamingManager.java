@@ -5,6 +5,7 @@ import java.io.*;
 
 public class StreamingManager implements IStreamingManager {
 
+    // #region File Manager
     @Override
     public void WriteIntoFile(String fileData) {
         try {
@@ -108,12 +109,90 @@ public class StreamingManager implements IStreamingManager {
 
     @Override
     public int ConvertAllToUpperCase(int origin) {
-        //Explain that lower case from 97 - 122
+        // Explain that lower case from 97 - 122
         // upper case from 65 - 90
-        //so 65 +  32 = 97 become lower
+        // so 65 + 32 = 97 become lower
         if (origin >= 97 && origin <= 122)
             return origin - 32;
         return origin;
+    }
+
+    // #endregion
+
+    // #region Byte Manager
+    @Override
+    public void ReadByteArray(byte[] data) {
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(data);
+            int x;
+            while ((x = bis.read()) != -1) {
+                System.out.print((char) x);
+            }
+
+            bis.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    @Override
+    public void ReadByteArray2(byte[] data) {
+        try {
+            ByteArrayInputStream bis = new ByteArrayInputStream(data);
+            String strData = new String(bis.readAllBytes());
+            System.out.println(strData);
+            System.out.println(bis.markSupported());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Override
+    public void WriteByteArray()
+    {
+        try {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            bos.write('W');
+            bos.write('A');
+            bos.write('U');
+    
+            byte[] b = bos.toByteArray();
+            String result = new String(b);
+    
+            for(byte x : b)
+            {
+                System.out.println((char)x);
+            }
+    
+            FileOutputStream fos = new FileOutputStream("src/source/streamingfile3.txt");
+            bos.writeTo(fos);
+            System.out.print(result);
+    
+            bos.close();
+            fos.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    // #endregion
+
+
+    //#region
+    @Override
+    public void ReadCharArray(char[] data)
+    {
+        try {
+            CharArrayReader chr = new CharArrayReader(data);
+            int x;
+            while((x= chr.read()) !=-1)
+            {
+                System.out.println((char)x);
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+       
     }
 
 }
