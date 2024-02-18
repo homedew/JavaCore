@@ -20,6 +20,20 @@ public class CorejavaApplication {
 		sm.ReadFileWithFileReader("src/source/streamingfile2.txt");
 		sm.CopyFile("src/source/streamingfileCopy1.txt", "src/source/streamingfileCopy2.txt");
 		sm.ReadFileWithFileReader("src/source/streamingfileCopy2.txt");
+
+		System.out.println();
+		System.out.println("Streaming data for byte");
+		byte[] data = {'H','e', 'l','l','o'};
+		sm.ReadByteArray(data);
+		byte[] data2 = {'w','o','r','l','d'};
+		sm.ReadByteArray2(data2);
+
+		sm.WriteByteArray();
+
+		System.out.println();
+		System.out.println("Streaming data for bytes");
+		char[] data3 = {'C','H'};
+		sm.ReadCharArray(data3);
 	}
 
 }
