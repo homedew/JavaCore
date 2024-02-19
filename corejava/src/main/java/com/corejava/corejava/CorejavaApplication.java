@@ -63,6 +63,10 @@ public class CorejavaApplication {
 		System.out.println();
 		System.out.println("Read a file");
 		sm.ReadAFile();
+
+		System.out.println();
+		System.out.println("Print Streamer");
+		sm.PrintStreamFunc();
 	}
 
 }

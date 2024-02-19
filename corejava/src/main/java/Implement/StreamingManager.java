@@ -213,31 +213,29 @@ public class StreamingManager implements IStreamingManager {
         try {
             FileInputStream fis = new FileInputStream("src/source/streamingfileCopy2.txt");
             BufferedInputStream bis = new BufferedInputStream(fis);
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
-            
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
+
             bis.mark(3);
-            System.out.println((char)bis.read());
+            System.out.println((char) bis.read());
 
-            
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
 
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
 
             bis.reset();
-            System.out.println((char)bis.read());
-            System.out.println((char)bis.read());
-
+            System.out.println((char) bis.read());
+            System.out.println((char) bis.read());
 
         } catch (Exception e) {
             System.out.println(e);
@@ -246,55 +244,89 @@ public class StreamingManager implements IStreamingManager {
 
     // #endregion
 
-
-    //#region RandomAccessFile
-    @Override 
-    public void RandomAccessFileFunc()
-    {
+    // #region RandomAccessFile
+    @Override
+    public void RandomAccessFileFunc() {
         try {
-        RandomAccessFile raf  = new RandomAccessFile("src/source/streamingfileCopy2.txt", "rw");
-        System.out.println((char)raf.read());
-        System.out.println((char)raf.read());
-        System.out.println((char)raf.read());
-        raf.write('b');
-        raf.write('l');
-        System.out.println((char)raf.read());
-        raf.skipBytes(3);
-        System.out.println((char)raf.read());
-        raf.seek((3));
-        System.out.println((char)raf.read());
-        System.out.println(raf.getFilePointer());
-        raf.seek(raf.getFilePointer() + 2);
-        System.out.println((char)raf.read());
-
-
+            RandomAccessFile raf = new RandomAccessFile("src/source/streamingfileCopy2.txt", "rw");
+            System.out.println((char) raf.read());
+            System.out.println((char) raf.read());
+            System.out.println((char) raf.read());
+            raf.write('b');
+            raf.write('l');
+            System.out.println((char) raf.read());
+            raf.skipBytes(3);
+            System.out.println((char) raf.read());
+            raf.seek((3));
+            System.out.println((char) raf.read());
+            System.out.println(raf.getFilePointer());
+            raf.seek(raf.getFilePointer() + 2);
+            System.out.println((char) raf.read());
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    //#endregion
+    // #endregion
 
-     //#region Read a File
-     @Override 
-     public void ReadAFile()
-     {
+    // #region Read a File
+    @Override
+    public void ReadAFile() {
         File f = new File("src");
         System.out.println(f.isDirectory());
 
         String file[] = f.list();
-        for(String t: file) 
-        {
+        for (String t : file) {
             System.out.println(t);
         }
 
         File file2[] = f.listFiles();
-        for(File fi : file2)
-        {
+        for (File fi : file2) {
             System.out.println(fi.getName());
             System.out.println(fi.getPath());
 
         }
 
-     }
+    }
+
+    /**
+     * InnerStreamingManager
+     */
+    public class Student {
+    
+        public String name;
+        public int age;
+    }
+    // #region PrintStreamF
+    @Override
+    public void PrintStreamFunc() {
+        try (FileOutputStream fos = new FileOutputStream("src/source/studentfile.txt")) {
+
+            PrintStream ps = new PrintStream(fos);
+            Student student = new Student();
+            student.age = 10;
+            student.name = "Test";
+
+            ps.println(student.age); 
+            ps.println(student.name);
+
+            ps.close();
+            fos.close();
+
+            FileInputStream fis = new FileInputStream("src/source/studentfile.txt");
+            BufferedReader r = new BufferedReader(new InputStreamReader(fis));
+
+            Student s = new Student();
+            s.age = Integer.parseInt(r.readLine());
+            s.name = r.readLine();
+
+            System.out.println(s.age);
+            System.out.println(s.name);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
 }

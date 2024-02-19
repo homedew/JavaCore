@@ -40,8 +40,11 @@ public interface IStreamingManager {
     void RandomAccessFileFunc();
     // #endregion
 
+    // #region FileManager
+    void ReadAFile();
+    // #endregion
 
-     // #region FileManager
-     void ReadAFile();
-     // #endregion
+    // #region PrintStream
+    void PrintStreamFunc();
+    // #endregion
 }
