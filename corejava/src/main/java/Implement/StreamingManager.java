@@ -274,4 +274,27 @@ public class StreamingManager implements IStreamingManager {
         }
     }
     //#endregion
+
+     //#region Read a File
+     @Override 
+     public void ReadAFile()
+     {
+        File f = new File("src");
+        System.out.println(f.isDirectory());
+
+        String file[] = f.list();
+        for(String t: file) 
+        {
+            System.out.println(t);
+        }
+
+        File file2[] = f.listFiles();
+        for(File fi : file2)
+        {
+            System.out.println(fi.getName());
+            System.out.println(fi.getPath());
+
+        }
+
+     }
 }
