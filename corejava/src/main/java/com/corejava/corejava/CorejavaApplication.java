@@ -52,8 +52,13 @@ public class CorejavaApplication {
 		Producer p = new Producer(o);
 		Consumer c = new Consumer(i);
 
-		p.start();
-		c.start();
+		// p.start();
+		// c.start();
+
+
+		System.out.println();
+		System.out.println("RandomAccessFile");
+		sm.RandomAccessFileFunc();
 	}
 
 }

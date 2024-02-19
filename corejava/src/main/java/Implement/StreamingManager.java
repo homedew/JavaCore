@@ -245,4 +245,33 @@ public class StreamingManager implements IStreamingManager {
     }
 
     // #endregion
+
+
+    //#region RandomAccessFile
+    @Override 
+    public void RandomAccessFileFunc()
+    {
+        try {
+        RandomAccessFile raf  = new RandomAccessFile("src/source/streamingfileCopy2.txt", "rw");
+        System.out.println((char)raf.read());
+        System.out.println((char)raf.read());
+        System.out.println((char)raf.read());
+        raf.write('b');
+        raf.write('l');
+        System.out.println((char)raf.read());
+        raf.skipBytes(3);
+        System.out.println((char)raf.read());
+        raf.seek((3));
+        System.out.println((char)raf.read());
+        System.out.println(raf.getFilePointer());
+        raf.seek(raf.getFilePointer() + 2);
+        System.out.println((char)raf.read());
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //#endregion
 }
