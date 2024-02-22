@@ -5,12 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import Inteface.IStreamingManager;
 import Implement.*;
+import java.io.*;
 
 
 @SpringBootApplication
 public class CorejavaApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		SpringApplication.run(CorejavaApplication.class, args);
 		IStreamingManager sm = new StreamingManager();
 		sm.WriteIntoFile("Now The world is gonna to my name");
@@ -39,6 +40,41 @@ public class CorejavaApplication {
 		System.out.println("Buffer InputStream");
 		sm.BufferInputStream();
 		sm.BufferWithMark();
+
+
+		System.out.println();
+		System.out.println("PipeStreaming");
+
+		PipedInputStream i =  new PipedInputStream();
+		PipedOutputStream o = new PipedOutputStream();
+
+		i.connect(o);
+		Producer p = new Producer(o);
+		Consumer c = new Consumer(i);
+
+		// p.start();
+		// c.start();
+
+
+		System.out.println();
+		System.out.println("RandomAccessFile");
+		sm.RandomAccessFileFunc();
+
+		System.out.println();
+		System.out.println("Read a file");
+		sm.ReadAFile();
+
+		System.out.println();
+		System.out.println("Print Streamer");
+		sm.PrintStreamFunc();
+
+		// System.out.println();
+		// System.out.println("Data output");
+		// sm.DataInputStreamFunc();
+
+		System.out.println();
+		System.out.println("ObjectInputStreamFunc");
+		sm.ObjectInputStreamFunc();
 	}
 
 }

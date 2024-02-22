@@ -1,30 +1,59 @@
 package Inteface;
 
 public interface IStreamingManager {
-    
-    //#region File Manager
+
+    // #region File Manager
     void WriteIntoFile(String fileData);
+
     void WriteIntoFile(String fileData, int offset, int length);
+
     void ReadFile(String filePath);
+
     void ReadFileWithWhile(String filePath);
+
     void ReadFileWithFileReader(String filePath);
+
     void CopyFile(String sourcePath, String destinationPath);
+
     int ConvertAllToUpperCase(int origin);
-    //#endregion
+    // #endregion
 
-    //#region Byte IO Manager
+    // #region Byte IO Manager
     void ReadByteArray(byte[] data);
+
     void ReadByteArray2(byte[] data2);
+
     void WriteByteArray();
-    //#endregion
+    // #endregion
 
-    //#region  Char Manager
+    // #region Char Manager
     void ReadCharArray(char[] data);
-    //#endregion
+    // #endregion
 
-    //#region Buffer Streaming
+    // #region Buffer Streaming
     void BufferInputStream();
-    void BufferWithMark();
-    //#endregion
 
+    void BufferWithMark();
+    // #endregion
+
+    // #region Random access file
+    void RandomAccessFileFunc();
+    // #endregion
+
+    // #region FileManager
+    void ReadAFile();
+    // #endregion
+
+    // #region PrintStream
+    void PrintStreamFunc();
+    // #endregion
+
+    // #region Data Output Stream
+    void DataInputStreamFunc();
+    // #endregion
+
+
+    // #region Object Input Stream
+    void ObjectInputStreamFunc();
+    // #endregion
 }
