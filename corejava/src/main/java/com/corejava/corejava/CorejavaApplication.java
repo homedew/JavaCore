@@ -67,6 +67,14 @@ public class CorejavaApplication {
 		System.out.println();
 		System.out.println("Print Streamer");
 		sm.PrintStreamFunc();
+
+		// System.out.println();
+		// System.out.println("Data output");
+		// sm.DataInputStreamFunc();
+
+		System.out.println();
+		System.out.println("ObjectInputStreamFunc");
+		sm.ObjectInputStreamFunc();
 	}
 
 }

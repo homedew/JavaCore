@@ -47,4 +47,13 @@ public interface IStreamingManager {
     // #region PrintStream
     void PrintStreamFunc();
     // #endregion
+
+    // #region Data Output Stream
+    void DataInputStreamFunc();
+    // #endregion
+
+
+    // #region Object Input Stream
+    void ObjectInputStreamFunc();
+    // #endregion
 }

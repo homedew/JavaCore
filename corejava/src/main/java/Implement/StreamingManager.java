@@ -3,6 +3,7 @@ package Implement;
 import Inteface.IStreamingManager;
 import java.io.*;
 
+
 public class StreamingManager implements IStreamingManager {
 
     // #region File Manager
@@ -292,11 +293,8 @@ public class StreamingManager implements IStreamingManager {
     /**
      * InnerStreamingManager
      */
-    public class Student {
-    
-        public String name;
-        public int age;
-    }
+  
+
     // #region PrintStreamF
     @Override
     public void PrintStreamFunc() {
@@ -307,7 +305,7 @@ public class StreamingManager implements IStreamingManager {
             student.age = 10;
             student.name = "Test";
 
-            ps.println(student.age); 
+            ps.println(student.age);
             ps.println(student.name);
 
             ps.close();
@@ -322,11 +320,69 @@ public class StreamingManager implements IStreamingManager {
 
             System.out.println(s.age);
             System.out.println(s.name);
-
+            
+            fis.close();
+            r.close();
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    // #endregion
+
+
+    // #region DataInputStreamFunc
+    @Override
+    public void DataInputStreamFunc() {
+        try (FileInputStream fis = new FileInputStream("src/source/studentfile.txt")) {
+            DataInputStream dis = new DataInputStream(fis);
+
+            System.out.println(dis.readInt());
+            System.out.println(dis.readUTF());
+            fis.close();
+            dis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    // #endregion
+
+
+    @Override
+    public void ObjectInputStreamFunc() {
+
+        try {
+            FileOutputStream fos = new FileOutputStream("src/source/studentfile2.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            Student s = new Student();
+            s.age = 10;
+            s.name = "ABC";
+            oos.writeObject(s);
+            fos.close();
+            oos.close();
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         
+
+        try (FileInputStream fis = new FileInputStream("src/source/studentfile2.txt")) {
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            Student s = new Student();
+
+            s = (Student)ois.readObject();
+            System.out.println(s.toString());
+
+            fis.close();
+            ois.close(); 
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
